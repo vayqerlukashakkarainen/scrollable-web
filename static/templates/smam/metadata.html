@@ -1,0 +1,61 @@
+<div data-tl-id="container" class="d-flex flex-column">
+	<div data-tl-id="part1">
+		<h4>Project</h4>
+		<h3>Show me a Movie</h3>
+		<div
+			data-tl-id="tabs"
+			class="tabs transition overflow-hidden interactable"
+			data-tab-group-target="part1"
+			data-tab-default-target="desc"
+		>
+			<button data-target="desc" class="active">Info</button>
+			<button data-target="desc">Challanges</button>
+			<button data-target="screenshots">Screenshots</button>
+		</div>
+		<div data-tl-id="desc">
+			<p class="tab-page max-w-3" data-tab="desc" data-tab-group="part1">
+				Show me a Movie is a mobile app for randomizing movies and series when
+				you are on a watch dry.
+			</p>
+			<div class="tab-page pt-2" data-tab="screenshots" data-tab-group="part1">
+				<img class="max-h-3" src="/images/smam/img1.png" />
+				<img class="max-h-3" src="/images/smam/img2.png" />
+				<img class="max-h-3" src="/images/smam/img3.png" />
+			</div>
+		</div>
+	</div>
+	<div
+		data-tab="desc"
+		data-tab-group="part1"
+		data-tl-id="part2"
+		class="max-w-50 segment tab-page"
+	>
+		<h5>Made with</h5>
+		<div>
+			<div class="d-flex flex-column">
+				<span class="usp">JavaScript</span>
+				<span data-tl-id="js" class="percentage js transition"></span>
+			</div>
+			<div class="d-flex flex-column">
+				<span class="usp">CSS</span>
+				<span data-tl-id="css" class="percentage css transition"></span>
+			</div>
+			<div class="d-flex flex-column">
+				<span class="usp">HTML</span>
+				<span data-tl-id="html" class="percentage html transition"></span>
+			</div>
+		</div>
+	</div>
+	<div
+		data-tab="desc"
+		data-tab-group="part1"
+		data-tl-id="part3"
+		class="max-w-50 segment tab-page"
+	>
+		<h5>Released on</h5>
+		<div>
+			<span class="usp">iOS</span>
+			<span class="usp">Android</span>
+		</div>
+	</div>
+</div>

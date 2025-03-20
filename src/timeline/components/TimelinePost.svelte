@@ -13,6 +13,7 @@
 	} from "../types";
 	import { compositePosition } from "../compositePosition";
 	import { compositeStyle } from "../compositeStyle";
+	import { setupChildAnimation } from "../functions";
 
 	export let post: Post;
 	export let distance: number;
@@ -89,21 +90,79 @@
 		)}`;
 	}
 
+	function initializePost(container: HTMLDivElement) {
+		elements = container.querySelectorAll(
+			"[data-tl-id]"
+		) as NodeListOf<HTMLElement>;
+
+		if (!postAnimations) return;
+
+		elements.forEach((e) => {
+			const tlId = e.dataset.tlId;
+
+			if (!tlId) return;
+
+			const key = postAnimations[tlId];
+
+			if (!key || !key.loop) return;
+
+			const parentAnimations = postAnimations[tlId];
+
+			for (var i = 0; i < e.children.length; i++) {
+				const child = e.children[i] as HTMLElement;
+				const id = `${tlId}_${i}`;
+
+				child.dataset.tlId = id;
+
+				postAnimations[id] = setupChildAnimation(
+					i,
+					parentAnimations,
+					e.children.length
+				);
+			}
+
+			if (parentAnimations.movement) {
+				parentAnimations.movement.disabled = true;
+			}
+		});
+	}
+
 	function updatePostStyles(container: HTMLDivElement) {
 		elements = container.querySelectorAll(
 			"[data-tl-id]"
 		) as NodeListOf<HTMLElement>;
 		elementsRect = [];
 
-		elements.forEach((e) => {
+		elements.forEach((e, index) => {
 			const rect = e.getBoundingClientRect();
 			elementsRect.push({ width: rect.width, height: rect.height });
+
+			const childImgs = e.querySelectorAll("img");
+			if (childImgs.length) {
+				let resolved = 0;
+				childImgs.forEach((element) => {
+					element.onload = () => {
+						resolved++;
+
+						if (resolved === childImgs.length) {
+							const newRect = e.getBoundingClientRect();
+							elementsRect[index] = {
+								width: newRect.width,
+								height: newRect.height,
+							};
+						}
+
+						element.onload = null;
+					};
+				});
+			}
 		});
 	}
 
 	onMount(() => {
 		contentsPromise.then(() => {
 			if (!parentDiv) return;
+			initializePost(parentDiv);
 			updatePostStyles(parentDiv);
 			bindTabs(parentDiv);
 		});
@@ -114,8 +173,16 @@
 	<div bind:this={parentDiv}>
 		{#await contentsPromise then contents}
 			{#each contents as content}
-				{@html content}
+				<div class="post">
+					{@html content}
+				</div>
 			{/each}
 		{/await}
 	</div>
 {/if}
+
+<style>
+	.post {
+		position: absolute;
+	}
+</style>

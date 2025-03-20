@@ -1,6 +1,6 @@
 import type { OneDPointWithId, OneDPoint } from "kd-tree-javascript";
 import { pointOnTimeline } from "../shared/helpers";
-import type { Post } from "./types";
+import type { Post, TimelineAnimation } from "./types";
 
 export function computePostComponents(
 	posts: Post[],
@@ -63,4 +63,46 @@ export function createKdTree(
 	);
 
 	return kdTree;
+}
+
+export function setupChildAnimation(
+	childIndex: number,
+	parentAnimation: TimelineAnimation,
+	childCount: number
+) {
+	const anim = structuredClone(parentAnimation);
+
+	if (anim.movement) {
+		let diff = 0;
+		anim.movement.positions = anim.movement.positions.map((x, index, arr) => {
+			if (index + 1 < arr.length) {
+				const nextKeyframe = arr[index + 1].keyframe;
+				diff = (nextKeyframe - x.keyframe) / childCount / 2.8;
+			}
+
+			return {
+				keyframe:
+					x.keyframe +
+					(index === arr.length - 1
+						? -diff * (childCount - (childIndex + 1))
+						: diff * childIndex),
+				t: x.t,
+			};
+		});
+	}
+
+	if (anim.styles) {
+		anim.styles = anim.styles.map((x, index, arr) => {
+			if (index + 1 >= arr.length) return x;
+
+			const nextKeyframe = arr[index + 1].keyframe;
+			const diff = (nextKeyframe - x.keyframe) / childCount;
+			return {
+				keyframe: x.keyframe + diff * childIndex,
+				properties: x.properties,
+			};
+		});
+	}
+
+	return anim;
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Typer from "./Typer.svelte";
+	import Typer from "./typer.svelte";
 
 	export let texts: string[];
 	export let title: string;

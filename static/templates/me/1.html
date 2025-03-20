@@ -1,0 +1,64 @@
+<style>
+	.inline-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		flex-direction: column;
+		height: auto;
+	}
+	h1 {
+		font-size: 4em;
+	}
+	.portrait {
+		border-radius: 50%;
+		max-height: 312px;
+		z-index: -1;
+		opacity: 0;
+	}
+	.hey {
+		margin-top: -0.9em;
+		opacity: 0;
+	}
+	.steps {
+		display: grid;
+		width: 40em;
+	}
+	.steps > * {
+		grid-column: 1;
+		grid-row: 1;
+		opacity: 0;
+	}
+</style>
+
+<div data-tl-id="container" class="inline-container">
+	<img data-tl-id="me" src="/images/me.jpeg" class="portrait transition" />
+	<h1 data-tl-id="title" class="transition hey">Hey!</h1>
+	<div class="steps container">
+		<div data-tl-id="step1" class="transition">
+			<p>My name is Lukas, welcome to this scroll page</p>
+		</div>
+		<div data-tl-id="step2" class="transition">
+			<div data-tl-id="text1">
+				<p>
+					I am a fullstack developer with a passion of developing challanging
+					projects.
+				</p>
+			</div>
+		</div>
+		<div data-tl-id="step3" class="transition">
+			<p data-tl-id="text1">
+				I've developed several projects during the years, <br />
+				<span data-tl-id="languages">
+					spanning over multiple devices and programming languages
+				</span>
+			</p>
+		</div>
+		<div data-tl-id="step4" class="transition">
+			<p>
+				Thank you for being here! <br />
+				Keep scrolling and hopefully you will find something interesting
+			</p>
+		</div>
+	</div>
+</div>

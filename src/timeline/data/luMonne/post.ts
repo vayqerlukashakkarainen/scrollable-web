@@ -4,7 +4,6 @@ import { luMonneContent } from "./content";
 
 export const luMonnePost: Post = {
 	type: 1,
-	id: 3,
 	timeline: {
 		hidden: false,
 		start: {

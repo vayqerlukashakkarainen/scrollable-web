@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Background from "./components/Background.svelte";
 	import type { ScrollTimelineEvent } from "../timeline/types";
 	import "../global.css";
-	import PrimaryTitle from "./components/PrimaryTitle.svelte";
+	import PrimaryTitle from "../components/primaryTitle.svelte";
 	import TimelineContainer from "../timeline/TimelineContainer.svelte";
+	import Background from "../components/background.svelte";
 
 	let opacity: number = 1;
 	const minHeightThreshold: number = 30;
@@ -24,23 +24,7 @@
 		style:--min-height={`${minHeight}vh`}
 		style:--padding-bottom={`${paddingBottom}em`}
 		class="titles-container container"
-	>
-		<div class="animation-1">
-			<PrimaryTitle
-				typerDelay={200}
-				title="Lukas Hakkarainen"
-				texts={["hi, my name is"]}
-			/>
-		</div>
-
-		<div class="animation-2">
-			<PrimaryTitle
-				typerDelay={900}
-				title="Software Developer"
-				texts={["I am a"]}
-			/>
-		</div>
-	</div>
+	/>
 
 	<div class="animation-3 h-100">
 		<TimelineContainer on:notify={callbackFunction} />
@@ -57,21 +41,8 @@
 		opacity: var(--hero-opacity);
 	}
 
-	.animation-1 {
-		animation: fade-in-top ease 1s;
-		animation-delay: 0.3s;
-		animation-fill-mode: forwards;
-		opacity: 0;
-	}
-	.animation-2 {
-		animation: fade-in-top ease 1s;
-		animation-delay: 0.3s;
-		animation-fill-mode: forwards;
-		opacity: 0;
-	}
 	.animation-3 {
 		animation: fade-in-bottom ease 1.4s;
-		animation-delay: 0.5s;
 		animation-fill-mode: forwards;
 		opacity: 0;
 	}
@@ -80,16 +51,6 @@
 		height: 100%;
 	}
 
-	@keyframes fade-in-top {
-		0% {
-			opacity: 0;
-			padding-bottom: 2em;
-		}
-		100% {
-			opacity: 1;
-			padding-bottom: 0em;
-		}
-	}
 	@keyframes fade-in-bottom {
 		0% {
 			opacity: 0;

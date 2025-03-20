@@ -2,7 +2,6 @@ import type { Post } from "../../types";
 
 export const vayqerPost: Post = {
 	type: 1,
-	id: 2,
 	timeline: {
 		hidden: false,
 		start: {

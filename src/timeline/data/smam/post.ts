@@ -4,7 +4,6 @@ import { smamContent } from "./content";
 
 export const smamPost: Post = {
 	type: 1,
-	id: 0,
 	timeline: {
 		hidden: false,
 		start: {

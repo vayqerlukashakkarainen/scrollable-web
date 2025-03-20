@@ -1,3 +1,19 @@
+:root {
+	--primary-300: #899099;
+	--primary-200: #80a3d2;
+}
+
+h1 {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+p {
+	color: var(--primary-300);
+}
+a {
+	color: var(--primary-200);
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .behind {
 	z-index: -1;
 	opacity: 0.6;
@@ -32,6 +48,11 @@
 	padding: 1px 4px;
 	font-family: "Courier New", Courier, monospace;
 	color: rgba(255, 255, 255, 0.804);
+}
+
+hint {
+	color: white;
+	font-weight: bold;
 }
 
 .overflow-hidden {

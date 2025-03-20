@@ -52,7 +52,7 @@
 		const tempRightOffsetDelta =
 			(rect.right - containerRect.width) / topOffestDistanceThreshold;
 		rightOffsetDelta = tempRightOffsetDelta <= 1 ? tempRightOffsetDelta : 1;
-		timelineDomTopOffset = (easeInOut(rightOffsetDelta) - 1) * -1 * 75;
+		timelineDomTopOffset = (easeInOut(rightOffsetDelta) - 1) * -1 * 82;
 
 		if (kdTree) {
 			cursorPosition = Math.abs(rect.x);
@@ -124,7 +124,7 @@
 			style:--iteration-count={pulseIterationCount}
 		>
 			<h5 class="cursor-content" style:opacity={1 - rightOffsetDelta}>
-				Drag me <MdiStore24Hour />
+				Drag me
 			</h5>
 		</div>
 		<div bind:this={yearsDom} class="years">
@@ -212,6 +212,7 @@
 		font-family: "Courier New", Courier, monospace;
 	}
 	.cursor {
+		pointer-events: none;
 		display: flex;
 		justify-content: center;
 		position: sticky;

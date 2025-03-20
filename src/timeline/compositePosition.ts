@@ -10,7 +10,7 @@ export function compositePosition(
 	beziers: Map<string, Bezier>,
 	elDimensions?: Dimensions
 ): string {
-	if (!movement) return EMPTY_STRING;
+	if (!movement || movement.disabled) return EMPTY_STRING;
 
 	let movementIndex = -1;
 	movement.positions.forEach((s, index) => {

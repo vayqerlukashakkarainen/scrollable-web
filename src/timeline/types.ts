@@ -16,7 +16,6 @@ export interface ScrollTimelineEvent {
 }
 
 export interface Post {
-	id: number;
 	type: PostType;
 	timeline: Timeline;
 	content: Content[];
@@ -27,10 +26,14 @@ export interface TimelineAnimation {
 	styles?: AnimatedStyles[];
 	movement?: AnimatedCurve;
 	transition?: TransitionType;
+	loop?: TimelineLoop;
 }
+
+export interface TimelineLoop {}
 
 export interface AnimatedCurve {
 	curveId: string;
+	disabled?: boolean;
 	align?: Align;
 	positions: CurvePosition[];
 }

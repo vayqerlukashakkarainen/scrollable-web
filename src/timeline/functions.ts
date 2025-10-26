@@ -51,7 +51,7 @@ export function createKdTree(
 			id: index,
 		};
 	});
-	kdTree.kdTree(
+	const tree = new (kdTree.kdTree as any)(
 		points,
 		(cursor: OneDPoint, post: OneDPoint) => {
 			if (cursor.x <= post.x2 && cursor.x >= post.x) {
@@ -62,7 +62,7 @@ export function createKdTree(
 		["x", "x2"]
 	);
 
-	return kdTree;
+	return tree;
 }
 
 export function setupChildAnimation(

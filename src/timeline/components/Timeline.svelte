@@ -7,15 +7,9 @@
 		computePostComponents,
 		createKdTree,
 	} from "../functions";
-	import { loadPosts } from "../loadPosts";
 	import { timelineData } from "../data/timeline";
-	import MdiStore24Hour from "~icons/mdi/store-24-hour";
 
 	let kdTree: typeof import("kd-tree-javascript");
-	const treeModule = (async () =>
-		await import(
-			"kd-tree-javascript" /* webpackChunkName: "chunk-name" */
-		))().then((m) => (kdTree = m));
 
 	const dispatch = createEventDispatcher();
 
@@ -105,8 +99,9 @@
 			startYear
 		);
 
-		await treeModule;
-		kdTree = createKdTree(kdTree, postComponents, timelineWidth, startYear);
+		await import("kd-tree-javascript").then((m) => {
+			kdTree = createKdTree(m, postComponents, timelineWidth, startYear);
+		});
 	}
 </script>
 

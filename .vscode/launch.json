@@ -6,8 +6,10 @@
 	"configurations": [
 		{
 			"type": "chrome",
+			"userDataDir": true,
+			"runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
 			"request": "launch",
-			"name": "Launch Chrome against localhost",
+			"name": "Launch Brave",
 			"url": "http://localhost:5173",
 			"webRoot": "${workspaceFolder}"
 		}

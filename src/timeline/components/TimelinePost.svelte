@@ -32,7 +32,8 @@
 	async function fetchContents(templates: string[]) {
 		let loadedTemplates: string[] = [];
 		for (let i = 0; i < templates.length; i++) {
-			var response = await fetch(templates[i]);
+			const url = `${import.meta.env.BASE_URL}${templates[i].replace(/^\//, "")}`;
+			var response = await fetch(url);
 			if (response.ok) {
 				const text = await response.text();
 				loadedTemplates.push(text);
